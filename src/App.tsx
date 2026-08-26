@@ -86,8 +86,8 @@ function SalonApp() {
     <div
       className={`min-h-screen transition-colors duration-500 relative ${
         theme === 'dark'
-          ? 'bg-[#171614] text-[#F3E9DC] selection:bg-[#C2A386] selection:text-[#171614]'
-          : 'bg-[#FAF7F2] text-[#241E19] selection:bg-[#9E7B5C] selection:text-[#FFFFFF]'
+          ? 'bg-[#0E0D0B] text-[#F9F6F0] selection:bg-[#D8B273] selection:text-[#0E0D0B]'
+          : 'bg-[#FBF9F5] text-[#1E1915] selection:bg-[#966B3D] selection:text-[#FFFFFF]'
       }`}
     >
       {/* Sticky Header with Theme Switcher */}

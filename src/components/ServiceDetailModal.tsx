@@ -53,6 +53,20 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
             alt={service.name}
             className="w-full h-full object-cover object-center"
             referrerPolicy="no-referrer"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              if (service.id === 'skin-care') {
+                target.src = 'https://images.unsplash.com/photo-1512290900672-1f02e71f2562?auto=format&fit=crop&w=800&q=80';
+              } else if (service.id === 'bridal-makeover') {
+                target.src = 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80';
+              } else if (service.id === 'hair-treatments') {
+                target.src = 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=80';
+              } else if (service.id === 'nail-studio') {
+                target.src = 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=800&q=80';
+              } else {
+                target.src = 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80';
+              }
+            }}
           />
           <div
             className={`absolute inset-0 ${

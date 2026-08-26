@@ -55,7 +55,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     tagline: 'Hydra-Glow & Instant Radiance',
     description: 'Ultrasonic deep pore cleansing, Hydra-Facials, Ayurvedic gold & diamond facials, and anti-tan therapies designed to unveil pure youthful glow.',
     duration: '60 – 90 mins',
-    image: 'https://images.unsplash.com/photo-1512290900672-1f02e71f2562?auto=format&fit=crop&w=800&q=80',
+    image: '/aesthetic_skin_facial.png',
     highlights: ['Hydra-Infusion Glow Therapy', 'Gold & Diamond Bridal Facial', 'Organic D-Tan & Brightening Peel', 'Acupressure Face Rejuvenation']
   },
   {

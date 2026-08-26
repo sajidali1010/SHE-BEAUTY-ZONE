@@ -26,12 +26,15 @@ export const CommitmentSection: React.FC = () => {
   return (
     <section
       id="commitment"
-      className={`relative py-24 lg:py-32 overflow-hidden border-t transition-colors duration-500 ${
+      className={`relative py-20 lg:py-28 overflow-hidden border-t scroll-mt-24 sm:scroll-mt-28 transition-colors duration-500 ${
         isDark
           ? 'bg-[#0E0D0B] border-[#D8B273]/15'
           : 'bg-[#FBF9F5] border-[#966B3D]/18'
       }`}
     >
+      {/* Target anchor for #about navigation */}
+      <span id="about" className="absolute -top-24 pointer-events-none" />
+
       {/* Background Ambience */}
       <div
         className={`absolute bottom-0 left-0 w-96 h-96 rounded-full blur-[120px] pointer-events-none ${
@@ -40,7 +43,7 @@ export const CommitmentSection: React.FC = () => {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           {/* Left Column: Vertical Editorial Portrait */}
           <div className="lg:col-span-5 relative">
@@ -57,7 +60,7 @@ export const CommitmentSection: React.FC = () => {
 
               {/* Vertical Image */}
               <div
-                className={`relative aspect-[3/4] sm:aspect-[4/5] rounded-xl overflow-hidden ${
+                className={`relative aspect-[2/3] sm:aspect-[3/4] lg:aspect-[2/3] rounded-xl overflow-hidden ${
                   isDark
                     ? 'bg-[#1C1916] shadow-[0_20px_50px_rgba(0,0,0,0.8)]'
                     : 'bg-[#F3EFEA] shadow-[0_20px_45px_rgba(80,55,30,0.1)]'
@@ -65,39 +68,46 @@ export const CommitmentSection: React.FC = () => {
               >
                 <img
                   id="commitment-portrait-image"
-                  src="https://images.unsplash.com/photo-1522337094346-290f26a121f0?auto=format&fit=crop&w=1200&q=85"
+                  src="/commitment_portrait.png"
                   alt="Our commitment to refined beauty rituals at She Beauty Zone"
-                  className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105"
+                  className="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-105"
                   referrerPolicy="no-referrer"
-                  loading="lazy"
+                  loading="eager"
+                  onError={(e) => {
+                    // Fallback to direct web CDN if needed
+                    const target = e.target as HTMLImageElement;
+                    if (!target.src.includes('unsplash')) {
+                      target.src = 'https://images.unsplash.com/photo-1522337094346-290f26a121f0?auto=format&fit=crop&w=1200&q=85';
+                    }
+                  }}
                 />
                 
                 {/* Cinematic Tint */}
                 <div
-                  className={`absolute inset-0 opacity-75 ${
+                  className={`absolute inset-0 opacity-60 ${
                     isDark
                       ? 'bg-gradient-to-t from-[#0E0D0B] via-transparent to-transparent'
-                      : 'bg-gradient-to-t from-[#1E1915] via-transparent to-transparent'
+                      : 'bg-gradient-to-t from-[#1E1915]/60 via-transparent to-transparent'
                   }`}
                 />
 
                 {/* Editorial Corner Quote */}
                 <div
-                  className={`absolute bottom-6 left-6 right-6 p-4 rounded-lg backdrop-blur-sm border ${
+                  className={`absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 p-4 rounded-xl backdrop-blur-md border ${
                     isDark
                       ? 'bg-[#161412]/92 border-[#D8B273]/25'
                       : 'bg-[#FFFFFF]/95 border-[#966B3D]/30 shadow-md'
                   }`}
                 >
                   <p
-                    className={`font-serif italic text-sm leading-snug ${
+                    className={`font-serif italic text-xs sm:text-sm leading-snug ${
                       isDark ? 'text-[#F9F6F0]' : 'text-[#1E1915]'
                     }`}
                   >
                     "True beauty is not manufactured; it is unlocked through thoughtful artistry and respectful care."
                   </p>
                   <p
-                    className={`text-[10px] uppercase tracking-[0.2em] mt-2 font-sans font-semibold ${
+                    className={`text-[9px] sm:text-[10px] uppercase tracking-[0.2em] mt-2 font-sans font-semibold ${
                       isDark ? 'text-[#D8B273]' : 'text-[#966B3D]'
                     }`}
                   >
@@ -108,7 +118,7 @@ export const CommitmentSection: React.FC = () => {
 
               {/* Minimal Bronze Decorative Accents */}
               <div
-                className={`absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 rounded-br-xl hidden sm:block ${
+                className={`absolute -bottom-3 -right-3 w-10 h-10 border-b-2 border-r-2 rounded-br-xl hidden sm:block ${
                   isDark ? 'border-[#D8B273]/50' : 'border-[#966B3D]/50'
                 }`}
               />

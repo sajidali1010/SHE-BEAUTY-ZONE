@@ -90,70 +90,79 @@ export const ServicesShowcase: React.FC<ServicesShowcaseProps> = ({
         </div>
 
         {/* Desktop 5-Item Circular Horizontal Showcase */}
-        <div className="hidden lg:grid lg:grid-cols-5 gap-6 xl:gap-8 items-end justify-items-center">
+        <div className="hidden lg:grid lg:grid-cols-5 gap-6 xl:gap-8 items-start justify-items-center">
           {SERVICES_DATA.map((service) => {
-            const isCenter = service.isFeatured;
+            const isFeatured = service.isFeatured;
             return (
               <div
                 key={service.id}
                 id={`service-item-desktop-${service.id}`}
-                className={`group flex flex-col items-center text-center transition-all duration-500 cursor-pointer ${
-                  isCenter ? '-translate-y-3' : 'hover:-translate-y-1.5'
-                }`}
+                className="group flex flex-col items-center text-center transition-all duration-300 cursor-pointer h-full w-full max-w-[210px] justify-between"
                 onClick={() => onSelectService(service)}
               >
                 {/* Circular Image Container */}
-                <div className="relative mb-6">
+                <div className="relative mb-5 flex flex-col items-center">
                   {/* Outer Bronze Ring */}
                   <div
                     className={`rounded-full transition-all duration-500 p-1.5 ${
                       isDark
-                        ? isCenter
-                          ? 'border-2 border-[#D8B273] shadow-[0_0_30px_rgba(216,178,115,0.35)] group-hover:border-[#ECC88C]'
+                        ? isFeatured
+                          ? 'border-2 border-[#D8B273] shadow-[0_0_25px_rgba(216,178,115,0.3)] group-hover:border-[#ECC88C] group-hover:shadow-[0_0_30px_rgba(216,178,115,0.45)]'
                           : 'border border-[#D8B273]/35 group-hover:border-[#D8B273] group-hover:shadow-[0_0_20px_rgba(216,178,115,0.25)]'
-                        : isCenter
-                        ? 'border-2 border-[#966B3D] shadow-[0_0_25px_rgba(150,107,61,0.3)] group-hover:border-[#7D552B]'
+                        : isFeatured
+                        ? 'border-2 border-[#966B3D] shadow-[0_0_20px_rgba(150,107,61,0.25)] group-hover:border-[#7D552B] group-hover:shadow-[0_0_25px_rgba(150,107,61,0.35)]'
                         : 'border border-[#966B3D]/35 group-hover:border-[#966B3D] group-hover:shadow-[0_0_18px_rgba(150,107,61,0.2)]'
                     }`}
                   >
-                    {/* Inner Image Circle */}
+                    {/* Inner Image Circle - Perfectly Uniform Dimensions */}
                     <div
-                      className={`relative rounded-full overflow-hidden transition-transform duration-700 group-hover:scale-[1.04] ${
+                      className={`relative w-38 h-38 xl:w-42 xl:h-42 rounded-full overflow-hidden transition-transform duration-700 group-hover:scale-[1.04] ${
                         isDark ? 'bg-[#1C1916]' : 'bg-[#FFFFFF]'
-                      } ${
-                        isCenter
-                          ? 'w-48 h-48 xl:w-52 xl:h-52'
-                          : 'w-36 h-36 xl:w-40 xl:h-40'
                       }`}
+                      style={{ width: '160px', height: '160px' }}
                     >
                       <img
                         src={service.image}
                         alt={`${service.name} at She Beauty Zone`}
                         className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110"
                         referrerPolicy="no-referrer"
-                        loading="lazy"
+                        loading="eager"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          if (service.id === 'skin-care') {
+                            target.src = 'https://images.unsplash.com/photo-1512290900672-1f02e71f2562?auto=format&fit=crop&w=800&q=80';
+                          } else if (service.id === 'bridal-makeover') {
+                            target.src = 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80';
+                          } else if (service.id === 'hair-treatments') {
+                            target.src = 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=80';
+                          } else if (service.id === 'nail-studio') {
+                            target.src = 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=800&q=80';
+                          } else {
+                            target.src = 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80';
+                          }
+                        }}
                       />
                       
                       {/* Vignette Overlay */}
                       <div
-                        className={`absolute inset-0 transition-opacity duration-300 group-hover:opacity-40 ${
+                        className={`absolute inset-0 transition-opacity duration-300 group-hover:opacity-30 ${
                           isDark
-                            ? 'bg-gradient-to-t from-[#0E0D0B]/60 via-transparent to-black/10'
-                            : 'bg-gradient-to-t from-[#1E1915]/50 via-transparent to-black/5'
+                            ? 'bg-gradient-to-t from-[#0E0D0B]/50 via-transparent to-black/10'
+                            : 'bg-gradient-to-t from-[#1E1915]/40 via-transparent to-black/5'
                         }`}
                       />
 
-                      {/* Featured Center Badge */}
-                      {isCenter && (
-                        <div className="absolute top-3 inset-x-0 flex justify-center">
+                      {/* Featured Badge inside Top */}
+                      {isFeatured && (
+                        <div className="absolute top-2.5 inset-x-0 flex justify-center z-10">
                           <span
-                            className={`px-2.5 py-0.5 rounded-full backdrop-blur-sm border text-[9px] uppercase tracking-[0.2em] font-semibold flex items-center gap-1 shadow-md ${
+                            className={`px-2 py-0.5 rounded-full backdrop-blur-md border text-[8px] uppercase tracking-[0.2em] font-semibold flex items-center gap-1 shadow-md ${
                               isDark
-                                ? 'bg-[#0E0D0B]/90 border-[#D8B273]/50 text-[#ECC88C]'
-                                : 'bg-[#FFFFFF]/95 border-[#966B3D]/60 text-[#7D552B]'
+                                ? 'bg-[#0E0D0B]/90 border-[#D8B273]/60 text-[#ECC88C]'
+                                : 'bg-[#FFFFFF]/95 border-[#966B3D]/70 text-[#7D552B]'
                             }`}
                           >
-                            <Sparkles className={`w-2.5 h-2.5 ${isDark ? 'text-[#D8B273]' : 'text-[#966B3D]'}`} />
+                            <Sparkles className={`w-2 h-2 ${isDark ? 'text-[#D8B273]' : 'text-[#966B3D]'}`} />
                             Featured
                           </span>
                         </div>
@@ -162,33 +171,42 @@ export const ServicesShowcase: React.FC<ServicesShowcaseProps> = ({
                   </div>
                 </div>
 
-                {/* Service Details Under Circle */}
-                <div className="space-y-2 max-w-[200px]">
-                  <h3
-                    className={`font-serif text-lg xl:text-xl transition-colors duration-300 ${
-                      isDark
-                        ? 'text-[#F9F6F0] group-hover:text-[#ECC88C]'
-                        : 'text-[#1E1915] group-hover:text-[#966B3D]'
-                    } ${isCenter ? 'font-medium text-xl xl:text-2xl' : 'font-normal'}`}
-                  >
-                    {service.name}
-                  </h3>
+                {/* Service Details Under Circle - Perfectly Synchronized Heights */}
+                <div className="flex flex-col items-center justify-between flex-1 w-full space-y-2">
+                  {/* Title with locked height for perfect cross-column baseline alignment */}
+                  <div className="h-14 flex items-center justify-center px-1">
+                    <h3
+                      className={`font-serif text-base xl:text-lg leading-tight transition-colors duration-300 ${
+                        isDark
+                          ? 'text-[#F9F6F0] group-hover:text-[#ECC88C]'
+                          : 'text-[#1E1915] group-hover:text-[#966B3D]'
+                      } ${isFeatured ? 'font-medium' : 'font-normal'}`}
+                    >
+                      {service.name}
+                    </h3>
+                  </div>
 
-                  <p
-                    className={`text-xs font-light line-clamp-2 leading-relaxed ${
-                      isDark ? 'text-[#DDD4C7]' : 'text-[#4A3E35]'
-                    }`}
-                  >
-                    {service.description}
-                  </p>
+                  {/* Description with locked height for perfect cross-column baseline alignment */}
+                  <div className="h-14 flex items-center justify-center px-1">
+                    <p
+                      className={`text-xs font-light line-clamp-3 leading-relaxed ${
+                        isDark ? 'text-[#DDD4C7]' : 'text-[#4A3E35]'
+                      }`}
+                    >
+                      {service.description}
+                    </p>
+                  </div>
 
-                  <div
-                    className={`pt-2 flex items-center justify-center gap-1 text-[11px] uppercase tracking-[0.18em] font-semibold transition-transform duration-300 group-hover:translate-x-0.5 ${
-                      isDark ? 'text-[#D8B273]' : 'text-[#966B3D]'
-                    }`}
-                  >
-                    <span>Explore</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                  {/* Action Link anchored at identical bottom position */}
+                  <div className="pt-2">
+                    <div
+                      className={`flex items-center justify-center gap-1.5 text-[11px] uppercase tracking-[0.18em] font-semibold transition-transform duration-300 group-hover:translate-x-0.5 ${
+                        isDark ? 'text-[#D8B273]' : 'text-[#966B3D]'
+                      }`}
+                    >
+                      <span>Explore</span>
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -199,7 +217,7 @@ export const ServicesShowcase: React.FC<ServicesShowcaseProps> = ({
         {/* Tablet / Mobile Layout: Responsive Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:hidden gap-6 sm:gap-8">
           {SERVICES_DATA.map((service, index) => {
-            const isCenter = service.isFeatured;
+            const isFeatured = service.isFeatured;
             return (
               <div
                 key={service.id}
@@ -208,7 +226,7 @@ export const ServicesShowcase: React.FC<ServicesShowcaseProps> = ({
                   isDark
                     ? 'bg-[#1C1916] border-[#D8B273]/20 hover:border-[#D8B273]/50'
                     : 'bg-[#FFFFFF] border-[#966B3D]/25 hover:border-[#966B3D]/50 shadow-sm'
-                } ${isCenter && index === 0 ? 'sm:col-span-2' : ''}`}
+                } ${isFeatured && index === 0 ? 'sm:col-span-2' : ''}`}
                 onClick={() => onSelectService(service)}
               >
                 {/* Circular Image Container */}
@@ -216,10 +234,10 @@ export const ServicesShowcase: React.FC<ServicesShowcaseProps> = ({
                   <div
                     className={`rounded-full p-1.5 transition-all duration-300 ${
                       isDark
-                        ? isCenter
+                        ? isFeatured
                           ? 'border-2 border-[#D8B273] shadow-[0_0_25px_rgba(216,178,115,0.3)]'
                           : 'border border-[#D8B273]/30'
-                        : isCenter
+                        : isFeatured
                         ? 'border-2 border-[#966B3D] shadow-[0_0_20px_rgba(150,107,61,0.25)]'
                         : 'border border-[#966B3D]/35'
                     }`}
@@ -235,11 +253,25 @@ export const ServicesShowcase: React.FC<ServicesShowcaseProps> = ({
                         className="w-full h-full object-cover object-center"
                         referrerPolicy="no-referrer"
                         loading="lazy"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          if (service.id === 'skin-care') {
+                            target.src = 'https://images.unsplash.com/photo-1512290900672-1f02e71f2562?auto=format&fit=crop&w=800&q=80';
+                          } else if (service.id === 'bridal-makeover') {
+                            target.src = 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80';
+                          } else if (service.id === 'hair-treatments') {
+                            target.src = 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=80';
+                          } else if (service.id === 'nail-studio') {
+                            target.src = 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=800&q=80';
+                          } else {
+                            target.src = 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80';
+                          }
+                        }}
                       />
                     </div>
                   </div>
 
-                  {isCenter && (
+                  {isFeatured && (
                     <span
                       className={`absolute -bottom-2 inset-x-0 mx-auto w-max px-3 py-0.5 rounded-full border text-[9px] uppercase tracking-widest font-semibold ${
                         isDark
@@ -277,7 +309,7 @@ export const ServicesShowcase: React.FC<ServicesShowcaseProps> = ({
                         e.stopPropagation();
                         onSelectService(service);
                       }}
-                      className={`text-xs tracking-wider uppercase font-semibold inline-flex items-center gap-1 ${
+                      className={`text-xs tracking-wider uppercase font-semibold inline-flex items-center gap-1 cursor-pointer ${
                         isDark
                           ? 'text-[#D8B273] hover:text-[#ECC88C]'
                           : 'text-[#966B3D] hover:text-[#7D552B]'
@@ -292,7 +324,7 @@ export const ServicesShowcase: React.FC<ServicesShowcaseProps> = ({
                         e.stopPropagation();
                         onBookService(service.id);
                       }}
-                      className={`text-xs tracking-wider uppercase font-semibold ${
+                      className={`text-xs tracking-wider uppercase font-semibold cursor-pointer ${
                         isDark
                           ? 'text-[#F9F6F0] hover:text-[#D8B273]'
                           : 'text-[#1E1915] hover:text-[#966B3D]'
