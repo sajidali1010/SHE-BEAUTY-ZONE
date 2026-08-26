@@ -48,21 +48,38 @@ export const Footer: React.FC<FooterProps> = ({ onNavClick }) => {
           
           {/* Column 1: Brand & Philosophy */}
           <div className="lg:col-span-4 space-y-5">
-            <div className="space-y-1">
-              <span
-                className={`font-serif tracking-[0.25em] text-2xl font-light uppercase block ${
-                  isDark ? 'text-[#F9F6F0]' : 'text-[#1E1915]'
+            <div className="flex items-center gap-3.5">
+              <div
+                className={`relative w-12 h-12 rounded-full overflow-hidden shrink-0 border p-0.5 ${
+                  isDark
+                    ? 'border-[#D8B273]/40 bg-[#161412] shadow-[0_0_15px_rgba(216,178,115,0.2)]'
+                    : 'border-[#966B3D]/35 bg-[#FFFFFF] shadow-sm'
                 }`}
               >
-                SHE
-              </span>
-              <span
-                className={`font-sans text-[10px] tracking-[0.35em] font-semibold uppercase block ${
-                  isDark ? 'text-[#D8B273]' : 'text-[#966B3D]'
-                }`}
-              >
-                BEAUTY ZONE
-              </span>
+                <img
+                  src="/brand_logo.png"
+                  alt="She Beauty Zone Emblem"
+                  className="w-full h-full object-cover object-center rounded-full"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+
+              <div className="space-y-0.5">
+                <span
+                  className={`font-serif tracking-[0.25em] text-2xl font-light uppercase block leading-none ${
+                    isDark ? 'text-[#F9F6F0]' : 'text-[#1E1915]'
+                  }`}
+                >
+                  SHE
+                </span>
+                <span
+                  className={`font-sans text-[10px] tracking-[0.35em] font-semibold uppercase block ${
+                    isDark ? 'text-[#D8B273]' : 'text-[#966B3D]'
+                  }`}
+                >
+                  BEAUTY ZONE
+                </span>
+              </div>
             </div>
 
             <p className="text-xs font-light leading-relaxed max-w-sm">

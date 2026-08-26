@@ -84,29 +84,46 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Brand Wordmark Logo */}
+          {/* Brand Logo & Wordmark */}
           <a
             id="brand-logo-link"
             href="#hero"
             onClick={(e) => handleNavClick(e, '#hero')}
-            className="group flex flex-col focus:outline-none"
+            className="group flex items-center gap-3 sm:gap-3.5 focus:outline-none"
           >
-            <span
-              className={`font-serif tracking-[0.25em] text-lg sm:text-xl md:text-2xl font-normal uppercase transition-colors ${
+            <div
+              className={`relative w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden shrink-0 border transition-all duration-300 p-0.5 ${
                 isDark
-                  ? 'text-[#F9F6F0] group-hover:text-[#D8B273]'
-                  : 'text-[#1E1915] group-hover:text-[#966B3D]'
+                  ? 'border-[#D8B273]/40 bg-[#161412] group-hover:border-[#D8B273] shadow-[0_0_15px_rgba(216,178,115,0.2)]'
+                  : 'border-[#966B3D]/35 bg-[#FFFFFF] group-hover:border-[#966B3D] shadow-sm'
               }`}
             >
-              SHE
-            </span>
-            <span
-              className={`font-sans text-[9px] sm:text-[10px] tracking-[0.35em] font-semibold uppercase -mt-1 transition-opacity ${
-                isDark ? 'text-[#D8B273]' : 'text-[#966B3D]'
-              }`}
-            >
-              BEAUTY ZONE
-            </span>
+              <img
+                src="/brand_logo.png"
+                alt="She Beauty Zone Emblem"
+                className="w-full h-full object-cover object-center rounded-full transition-transform duration-500 group-hover:scale-105"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+
+            <div className="flex flex-col">
+              <span
+                className={`font-serif tracking-[0.25em] text-lg sm:text-xl md:text-2xl font-normal uppercase transition-colors leading-tight ${
+                  isDark
+                    ? 'text-[#F9F6F0] group-hover:text-[#D8B273]'
+                    : 'text-[#1E1915] group-hover:text-[#966B3D]'
+                }`}
+              >
+                SHE
+              </span>
+              <span
+                className={`font-sans text-[8.5px] sm:text-[9.5px] tracking-[0.35em] font-semibold uppercase -mt-0.5 transition-opacity ${
+                  isDark ? 'text-[#D8B273]' : 'text-[#966B3D]'
+                }`}
+              >
+                BEAUTY ZONE
+              </span>
+            </div>
           </a>
 
           {/* Desktop Navigation */}
