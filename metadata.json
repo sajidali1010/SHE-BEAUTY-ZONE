@@ -1,0 +1,6 @@
+{
+  "name": "She Beauty Zone",
+  "description": "Luxury beauty and makeover studio offering professional hair styling, makeup artistry, bespoke packages, with interactive light & dark theme modes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
